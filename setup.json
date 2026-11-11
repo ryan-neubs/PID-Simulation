@@ -1,0 +1,14 @@
+{
+    "Gains" : {
+        "Kp" : 0,
+        "Ki" : 0,
+        "Kd" : 0
+    },
+    "Rail" : {
+        "Length (mm)" : 200
+    },
+    "Servo" : {
+        "Angle Limit (deg)" : 15.0,
+        "Degrees Per Second" : 600.0
+    }
+}

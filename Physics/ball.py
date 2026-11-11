@@ -2,24 +2,29 @@ from dataclasses import dataclass
 from typing import ClassVar
 from servo import Servo
 import math
+import json
 
 class Ball:
     """
     Represents the physical state of the 5/8" steel ball
     bearing as it rolls along the linear soft potentiometer.
     """
+    with open("setup.json", "r", encoding="utf-8") as file:
+        rail_properies: int = json.load(file)["Rail"]
+        rail_length_mm = rail_properies["Rail Length (mm)"]
+
     BALL_MASS_GRAMS: ClassVar[float] = 16.0
     BALL_SIZE_MM: ClassVar[float] = 15.875
-    LATERAL_OFFSET_LIMIT_MM: ClassVar[float] = 100.0
+    LATERAL_OFFSET_LIMIT_MM: ClassVar[float] = rail_length_mm / 2
     HEIGHT_OFFSET_LIMIT_MM: ClassVar[float] = LATERAL_OFFSET_LIMIT_MM * math.sin(
         math.radians(Servo.ANGLE_LIMIT)
     )
 
     _ball_lateral_offset_mm: float = 0.0
     _ball_height_mm: float = 0.0
+    ball_velocity: float = 0.0
 
-    def __init__(self, height, lateral_offset) -> None:
-        self.ball_height_mm = height
+    def __init__(self, lateral_offset) -> None:
         self.ball_lateral_offset_mm = lateral_offset
 
     @property
