@@ -19,6 +19,6 @@ seconds = 0
 while seconds < sim_duration:
     physics_loop.step()
     control_loop.step()
-    print(f'Ball [offset|height] [{ball.lateral_offset_mm:.2f}|{ball.height_mm:.2f}]')
+    print(f'[ball offset|ball height|servo angle] [{ball.lateral_offset_mm:.2f}|{ball.height_mm:.2f}|{servo.current_angle:.2f}]')
     seconds += 0.02
     time.sleep(0.02)

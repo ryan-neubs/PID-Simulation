@@ -12,4 +12,6 @@ class Servo:
     current_angle: float = 0.0
 
     def tilt(self, controller_output) -> None:
-        self.current_angle += (controller_output - self.current_angle) * self.SIMULATOR_STEP / self.SERVO_TAU
+        new_angle = self.current_angle + ((controller_output - self.current_angle) * self.SIMULATOR_STEP / self.SERVO_TAU)
+        limit = self.ANGLE_LIMIT
+        self.current_angle = max(-limit, min(new_angle, limit))
