@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import ClassVar
-from servo import Servo
+from Control.servo import Servo
 import math
 import json
 
