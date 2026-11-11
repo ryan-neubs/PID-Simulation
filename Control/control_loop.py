@@ -9,7 +9,7 @@ with open("setup.json", "r", encoding="utf-8") as file:
 PROPORTIONAL_GAIN: float = gains["Kp"]
 INTEGRAL_GAIN: float = gains["Ki"]
 DERIVATIVE_GAIN: float = gains["Kd"]
-SETPOINT: float = 25
+SETPOINT: float = setup_properties["Variables"]["Setpoint"]
 SIMULATOR_STEP: float = 0.02 # Seconds per simulator step
 class ControlLoop:
     prev_error: float = 0

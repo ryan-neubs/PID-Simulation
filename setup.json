@@ -16,5 +16,8 @@
     },
     "Time" : {
         "Simulator Runtime (s)" : 60
+    },
+    "Variables" : {
+        "Setpoint" : 0
     }
 }
