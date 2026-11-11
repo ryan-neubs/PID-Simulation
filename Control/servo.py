@@ -1,6 +1,5 @@
-from typing import ClassVar
 import json
-
+from typing import ClassVar
 class Servo:
     with open("setup.json", "r", encoding="utf-8") as file:
         servo_properties: dict = json.load(file)["Servo"]

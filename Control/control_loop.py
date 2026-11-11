@@ -1,6 +1,6 @@
+from Control.servo import Servo
 import json
 from Physics.ball import Ball
-from Physics.servo import Servo
 
 with open("setup.json", "r", encoding="utf-8") as file:
     gains = json.load(file)["Gains"]

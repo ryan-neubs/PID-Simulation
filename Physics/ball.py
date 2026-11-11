@@ -1,8 +1,8 @@
-from dataclasses import dataclass
-from typing import ClassVar
 from Control.servo import Servo
-import math
+from dataclasses import dataclass
 import json
+import math
+from typing import ClassVar
 
 class Ball:
     """
