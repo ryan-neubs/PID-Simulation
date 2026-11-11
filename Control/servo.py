@@ -6,8 +6,10 @@ class Servo:
 
     DEGREES_PER_SECOND: ClassVar[float] = servo_properties["Degrees Per Second"]
     ANGLE_LIMIT: ClassVar[float] = servo_properties["Angle Limit (deg)"]
+    SIMULATOR_STEP: float = 0.02
+    SERVO_TAU: float = 0.04
 
     current_angle: float = 0.0
 
-    def tilt(self, degrees) -> None:
-        pass
+    def tilt(self, controller_output) -> None:
+        self.current_angle += (controller_output - self.current_angle) * self.SIMULATOR_STEP / self.SERVO_TAU

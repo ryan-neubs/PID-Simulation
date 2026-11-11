@@ -10,39 +10,36 @@ class Ball:
     bearing as it rolls along the linear soft potentiometer.
     """
     with open("setup.json", "r", encoding="utf-8") as file:
-        rail_properies: int = json.load(file)["Rail"]
-        rail_length_mm = rail_properies["Rail Length (mm)"]
+        sim_properties: dict = json.load(file)
+        rail_length_mm: float = sim_properties["Rail"]["Length (mm)"]
+        ball_initial_offset: float = sim_properties["Ball"]["Initial Offset (mm)"]
 
-    BALL_MASS_GRAMS: ClassVar[float] = 16.0
-    BALL_SIZE_MM: ClassVar[float] = 15.875
     LATERAL_OFFSET_LIMIT_MM: ClassVar[float] = rail_length_mm / 2
     HEIGHT_OFFSET_LIMIT_MM: ClassVar[float] = LATERAL_OFFSET_LIMIT_MM * math.sin(
         math.radians(Servo.ANGLE_LIMIT)
     )
 
-    _ball_lateral_offset_mm: float = 0.0
-    _ball_height_mm: float = 0.0
-    ball_velocity: float = 0.0
-
-    def __init__(self, lateral_offset) -> None:
-        self.ball_lateral_offset_mm = lateral_offset
+    _lateral_offset_mm: float = ball_initial_offset
+    _height_mm: float = 0.0
+    velocity: float = 0.0
+    acceleration: float = 0.0
 
     @property
-    def ball_height_mm(self) -> float:
+    def height_mm(self) -> float:
         """Height offset from level position in mm."""
-        return self._ball_height_mm
+        return self._height_mm
 
-    @ball_height_mm.setter
-    def ball_height_mm(self, value: float) -> None:
+    @height_mm.setter
+    def height_mm(self, value: float) -> None:
         limit = self.HEIGHT_OFFSET_LIMIT_MM
-        self._ball_height_mm = max(-limit, min(value, limit))
+        self._height_mm = max(-limit, min(value, limit))
 
     @property
-    def ball_lateral_offset_mm(self) -> float:
+    def lateral_offset_mm(self) -> float:
         """Position offset from centered position in mm."""
-        return self._ball_lateral_offset_mm
+        return self._lateral_offset_mm
 
-    @ball_lateral_offset_mm.setter
-    def ball_lateral_offset_mm(self, value: float) -> None:
+    @lateral_offset_mm.setter
+    def lateral_offset_mm(self, value: float) -> None:
         limit = self.LATERAL_OFFSET_LIMIT_MM
-        self._ball_lateral_offset_mm = max(-limit, min(value, limit))
+        self._lateral_offset_mm = max(-limit, min(value, limit))

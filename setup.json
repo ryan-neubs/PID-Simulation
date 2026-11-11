@@ -1,8 +1,8 @@
 {
     "Gains" : {
-        "Kp" : 0,
-        "Ki" : 0,
-        "Kd" : 0
+        "Kp" : 0.1,
+        "Ki" : 0.00,
+        "Kd" : 0.04
     },
     "Rail" : {
         "Length (mm)" : 200
@@ -10,5 +10,11 @@
     "Servo" : {
         "Angle Limit (deg)" : 15.0,
         "Degrees Per Second" : 600.0
+    },
+    "Ball" : {
+        "Initial Offset (mm)" : 100
+    },
+    "Time" : {
+        "Simulator Runtime (s)" : 60
     }
 }
