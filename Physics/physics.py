@@ -2,7 +2,7 @@ from Physics.ball import Ball
 from Control.servo import Servo
 import math
 class PhysicsLoop:
-    GRAVITY: float = 9810 # 9.81 * 1000 because pir measurements are in mm
+    GRAVITY: float = 9810 # 9.81 * 1000 because our measurements are in mm
     SIMULATOR_STEP: float = 0.02 # Seconds per simulator step
 
     def __init__(self, ball: Ball, servo: Servo):
