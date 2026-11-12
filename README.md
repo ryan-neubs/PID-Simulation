@@ -1,2 +1,2 @@
 # PID-Simulation
-Learning the PID control loop for robotics. This simulates the PID control loop for a 5/8" steel ball bearing balancing on a rail
+This repo is for learning the PID control loop for robotics. This simulates the PID control loop for a ball balancing on a rail with a servo controlling the tilt. The end goal is to use this simulation to segue into a physical setup with an ESP32, linear soft potentiometer, servo, and steel ball bearing.
