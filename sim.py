@@ -7,14 +7,14 @@ import time
 
 with open("setup.json", "r", encoding="utf-8") as file:
     setup_properties: dict = json.load(file)
-    sim_duration: int = setup_properties["Time"]["Simulator Runtime (s)"]
+    sim_duration: float = setup_properties["Time"]["Simulator Runtime (s)"]
 
-ball = Ball()
-servo = Servo()
-control_loop = ControlLoop(ball, servo)
-physics_loop = PhysicsLoop(ball, servo)
+ball: Ball = Ball()
+servo: Servo = Servo()
+control_loop: ControlLoop = ControlLoop(ball, servo)
+physics_loop: PhysicsLoop = PhysicsLoop(ball, servo)
 
-seconds = 0
+seconds: float = 0.0
 
 while seconds < sim_duration:
     physics_loop.step()
