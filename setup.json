@@ -2,7 +2,7 @@
     "Gains" : {
         "Kp" : 0.1,
         "Ki" : 0.00,
-        "Kd" : 0.04
+        "Kd" : 0.1
     },
     "Rail" : {
         "Length (mm)" : 200
@@ -12,7 +12,9 @@
         "Degrees Per Second" : 600.0
     },
     "Ball" : {
-        "Initial Offset (mm)" : 100
+        "Initial Offset (mm)" : 100,
+        "Diameter (mm)" : 16.002,
+        "Mass (g)" : 16.35
     },
     "Time" : {
         "Simulator Runtime (s)" : 60

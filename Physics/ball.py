@@ -6,24 +6,29 @@ from typing import ClassVar, Any
 
 class Ball:
     """
-    Represents the physical state of the 5/8" steel ball
-    bearing as it rolls along the linear soft potentiometer.
+    Represents the physical state of the 5/8" steel ball bearing.
     """
     with open("setup.json", "r", encoding="utf-8") as file:
         sim_properties: dict[str, Any] = json.load(file)
         rail_length_mm: float = sim_properties["Rail"]["Length (mm)"]
-        ball_initial_offset: float = sim_properties["Ball"]["Initial Offset (mm)"]
+        ball_properties: float = sim_properties["Ball"]
 
     LATERAL_OFFSET_LIMIT_MM: ClassVar[float] = rail_length_mm / 2
     HEIGHT_OFFSET_LIMIT_MM: ClassVar[float] = LATERAL_OFFSET_LIMIT_MM * math.sin(
         math.radians(Servo.ANGLE_LIMIT)
     )
+    MASS_GRAMS: ClassVar[float] = ball_properties["Mass (g)"]
+    DIAMETER_MM: ClassVar[float] = ball_properties["Diameter (mm)"]
+    RADIUS_MM: ClassVar[float] = DIAMETER_MM / 2
+    ROTATIONAL_INERTIA: ClassVar[float] = 0.4 * (MASS_GRAMS / 1000) * (RADIUS_MM ** 2)
 
-    """Position offset from centered position in mm."""
-    _lateral_offset_mm: float = ball_initial_offset
-    """Height offset from level position in mm."""
+    """Current lateral offset from centered position in mm."""
+    _lateral_offset_mm: float = ball_properties["Initial Offset (mm)"]
+    """Current height offset from level position in mm."""
     _height_mm: float = 0.0
+    """Current velocity of the ball"""
     velocity: float = 0.0
+    """Current acceleration of the ball"""
     acceleration: float = 0.0
 
     @property
