@@ -13,5 +13,6 @@ From the CLI: 'python3 sim.py' or 'python sim.py'
 - Add gui for tweaking the physical components/variables of the system.
 - Unit testing
 - 3D Simulation?
-- Factor in friction and steel ball rotational intertia
+- Factor in friction
 - Factor in variable torque on the motor based on steel ball position
+- Factor in rotational inertia ✅
