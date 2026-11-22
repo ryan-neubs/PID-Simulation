@@ -1,13 +1,14 @@
-from Control.servo import Servo
-from Control.control_loop import ControlLoop
+from Sim.Control.servo import Servo
+from Sim.Control.control_loop import ControlLoop
 import json
-from Physics.ball import Ball
-from Physics.physics import PhysicsLoop
+from Sim.Physics.ball import Ball
+from Sim.Physics.physics import PhysicsLoop
 import time
 
 with open("setup.json", "r", encoding="utf-8") as file:
-    setup_properties: dict = json.load(file)
-    sim_duration: float = setup_properties["Time"]["Simulator Runtime (s)"]
+    SETUP_PROPERTIES: dict = json.load(file)
+    
+SIM_DURATION: float = SETUP_PROPERTIES["Time"]["Simulator Runtime (s)"]
 
 ball: Ball = Ball()
 servo: Servo = Servo()
@@ -16,7 +17,7 @@ physics_loop: PhysicsLoop = PhysicsLoop(ball, servo)
 
 seconds: float = 0.0
 
-while seconds < sim_duration:
+while seconds < SIM_DURATION:
     physics_loop.step()
     control_loop.step()
     print(f'[ball offset|ball height|servo angle] [{ball.lateral_offset_mm:.2f}|{ball.height_mm:.2f}|{servo.current_angle:.2f}]')

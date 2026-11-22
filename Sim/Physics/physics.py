@@ -1,12 +1,14 @@
-from Physics.ball import Ball
-from Control.servo import Servo
+from Sim.Physics.ball import Ball
+from Sim.Control.servo import Servo
 import math
 
 GRAVITY: float = 9810 # 9810mm/s^2 - Multiply the gravity acceleration constant (9.81m/s^2) by 1000 since we have our measurements in mm
 SIMULATOR_STEP: float = 0.02 # Seconds per simulator step
 
 class PhysicsLoop:
-    """Represents the physical state of the system between each step of the simulator"""
+    """
+    Represents the physical state of the system between each step of the PID controller
+    """
 
     def __init__(self, ball: Ball, servo: Servo) -> None:
         self.ball: Ball = ball

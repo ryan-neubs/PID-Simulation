@@ -13,6 +13,6 @@ From the CLI: 'python3 sim.py' or 'python sim.py'
 - Add gui for tweaking the physical components/variables of the system.
 - Unit testing
 - 3D Simulation?
-- Factor in friction
+- ~~Factor in friction~~ Not needed, Ki gain accounts for this in a physical simulation
 - Factor in variable torque on the motor based on steel ball position
 - Factor in rotational inertia ✅

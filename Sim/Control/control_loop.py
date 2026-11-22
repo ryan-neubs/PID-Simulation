@@ -1,19 +1,27 @@
-from Control.servo import Servo
+from Sim.Control.servo import Servo
 import json
-from Physics.ball import Ball
+from Sim.Physics.ball import Ball
 from typing import Any
 
 with open("setup.json", "r", encoding="utf-8") as file:
-    setup_properties: dict[str, Any] = json.load(file)
-    gains: dict[str, float] = setup_properties["Gains"]
+    SETUP_PROPERTIES: dict[str, Any] = json.load(file)
+    GAINS: dict[str, float] = SETUP_PROPERTIES["Gains"]
 
-PROPORTIONAL_GAIN: float = gains["Kp"]
-INTEGRAL_GAIN: float = gains["Ki"]
-DERIVATIVE_GAIN: float = gains["Kd"]
-SETPOINT: float = setup_properties["Variables"]["Setpoint"]
-SIMULATOR_STEP: float = 0.02 # Seconds per simulator step
+# PID gains
+PROPORTIONAL_GAIN: float = GAINS["Kp"]
+INTEGRAL_GAIN: float = GAINS["Ki"]
+DERIVATIVE_GAIN: float = GAINS["Kd"]
+
+# Desired target offset
+SETPOINT: float = SETUP_PROPERTIES["Variables"]["Setpoint"]
+
+# Seconds between each step in the simulator
+SIMULATOR_STEP: float = 0.02
 
 class ControlLoop:
+    """
+    Represents the calculations done in each step of the PID controller
+    """
     prev_error: float = 0.0
     error_sum: float = 0.0
 
