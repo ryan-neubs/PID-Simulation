@@ -3,6 +3,7 @@ import numpy as np
 import pyqtgraph as pg
 from typing import Any
 from Sim.Physics.ball import Ball
+from Sim.Control.control_loop import SETPOINT
 
 class RealTimeGraph:
 
@@ -11,6 +12,8 @@ class RealTimeGraph:
         self.x_axis: np.ndarray = np.linspace(0, duration, TOTAL_STEPS, endpoint=False)
         self.y_axis: np.ndarray = np.full(TOTAL_STEPS, np.nan)
         self.plot_widget: pg.PlotWidget = pg.plot(self.x_axis, self.y_axis)
+        target_line = pg.InfiniteLine(pos=SETPOINT, angle=0, pen="g", label="Setpoint")
+        self.plot_widget.addItem(target_line)
         self.curve: pg.PlotDataItem = self.plot_widget.plot(pen="r")
         self.index: int = 0
         self.app = pg.mkQApp()
